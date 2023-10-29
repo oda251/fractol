@@ -1,20 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.h                                          :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yoda <yoda@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/21 16:21:30 by yoda              #+#    #+#             */
-/*   Updated: 2023/10/21 17:12:07 by yoda             ###   ########.fr       */
+/*   Created: 2023/09/19 21:36:02 by yoda              #+#    #+#             */
+/*   Updated: 2023/09/24 21:41:31 by yoda             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACTOL_H
-# define FRACTOL_H
+#include "libft.h"
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdio.h>
+void	*ft_bzero(void *s, size_t n)
+{
+	size_t			i;
+	unsigned char	*dest;
 
-#endif
+	dest = (unsigned char *) s;
+	i = -1;
+	while (++i < n)
+		*(dest + i) = 0;
+	return (dest);
+}
