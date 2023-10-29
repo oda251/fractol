@@ -16,11 +16,7 @@ NAME = fractol
 LIBX_DIR_MMS = minilibx_mms/
 LIBX_DIR_LINUX = minilibx_linux/
 LIBX_DIR_OPENGL = minilibx_opengl/
-ifeq ($(UNAME_S),Linux)
-	LIBX_DIR = $(LIBX_DIR_LINUX)
-else
-	LIBX_DIR = $(LIBX_DIR_MMS)
-endif
+LIBX_DIR = $(LIBX_DIR_OPENGL)
 MINILIBX = addprefix($(LIBX_DIR), libmlx.a)
 
 all: $(NAME)
@@ -28,7 +24,7 @@ all: $(NAME)
 $(NAME): $(LIBFT) $(MINILIBX) $(SRCS)
 	$(CC) $(CFLAGS) $(INCLUDES) -o $(NAME) $(SRCS) \
 	-L$(LIBFT_DIR) -lft \
-	-L $(LIBX_DIR) -lmlx
+	-L $(LIBX_DIR) -lmlx -framework OpenGL -framework AppKit
 
 $(LIBFT):
 	make -C $(LIBFT_DIR)

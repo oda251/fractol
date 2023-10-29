@@ -6,7 +6,7 @@
 /*   By: yoda <yoda@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 18:48:51 by yoda              #+#    #+#             */
-/*   Updated: 2023/10/29 21:34:13 by yoda             ###   ########.fr       */
+/*   Updated: 2023/10/29 21:19:59 by yoda             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	main(int c, char **v)
 	// エンディアン データを下位、上位バイトどちらから読み込むか
 	int		endian;
 	char	*buffer = mlx_get_data_addr(img, &pixel_bits, &line_bytes, &endian);
-
+	
 	int	color = 0x0000FF00;
 	int	color1 = 0x0000FF00;
 	int	color2 = 0x00FF0000;
@@ -41,19 +41,7 @@ int	main(int c, char **v)
 	for(int x = 0; x < 500; ++x)
 	{
 		int pixel = (y * line_bytes) + (x * 4);
-
-		double c_x = -2.0 + x * (0.01);
-		double c_y = -1.0 + y * (0.01);
-		double z_x = 0.0;
-		double z_y = 0.0;
-		int n = 0;
-		while (n < 100 && hypot(x, y) < 2.0)
-		{
-			z_x = z_x * z_x - z_y * z_y + c_x;
-			z_y = 2.0 * z_x * z_y + c_y;
-			n++;
-		}
-		if (n < 100)
+		if (x == 250)
 			color = color1;
 		else
 			color = color2;
