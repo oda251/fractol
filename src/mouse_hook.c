@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   mouse_hook.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yoda <yoda@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/01 06:06:08 by yoda              #+#    #+#             */
-/*   Updated: 2023/10/30 19:26:01 by yoda             ###   ########.fr       */
+/*   Created: 2023/10/30 21:55:53 by yoda              #+#    #+#             */
+/*   Updated: 2023/10/30 22:04:38 by yoda             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "fractol.h"
 
-void	ft_putstr(char *str)
+int	mouse_hook(int button, int x, int y, t_img *img)
 {
-	if (!str)
-		return ;
-	write(1, str, ft_strlen(str));
-}
-
-void	ft_puterror(char *str)
-{
-	if (!str)
-		return ;
-	write(2, str, ft_strlen(str));
+	if (1 <= button && button <= 5 && button != 3
+		&& x >= 0 && x <= WIN_WIDTH && y >= 0 && y <= WIN_HEIGHT)
+	{
+		if (button == 4 || button == 1)
+			img->zoom *= 1.1;
+		else if (button == 5 || button == 2)
+			img->zoom /= 1.1;
+		render_fractal(img);
+	}
+	return (1);
 }

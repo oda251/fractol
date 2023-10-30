@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yoda <yoda@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/01 06:06:08 by yoda              #+#    #+#             */
-/*   Updated: 2023/10/30 19:26:01 by yoda             ###   ########.fr       */
+/*   Created: 2023/10/30 21:27:42 by yoda              #+#    #+#             */
+/*   Updated: 2023/10/30 21:28:10 by yoda             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putstr(char *str)
+int	ft_strcmp(char *s1, char *s2)
 {
-	if (!str)
-		return ;
-	write(1, str, ft_strlen(str));
-}
+	int	index;
 
-void	ft_puterror(char *str)
-{
-	if (!str)
-		return ;
-	write(2, str, ft_strlen(str));
+	if (!s1 || !s2)
+		return (0);
+	index = 0;
+	while (s1[index] && s2[index] && s1[index] == s2[index])
+		index++;
+	return (s1[index] - s2[index]);
 }

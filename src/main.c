@@ -5,74 +5,56 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yoda <yoda@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/29 18:48:51 by yoda              #+#    #+#             */
-/*   Updated: 2023/10/29 21:34:13 by yoda             ###   ########.fr       */
+/*   Created: 2023/10/30 18:34:08 by yoda              #+#    #+#             */
+/*   Updated: 2023/10/30 22:22:36 by yoda             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
+enum e_fractal	trans_fractal(char *str);
+void			sset_img(t_img *img);
+
 int	main(int c, char **v)
 {
-	(void) c;
-	(void) v;
-	void	*mlx = mlx_init();
-	// 窓の作成
-	void	*win = mlx_new_window(mlx, 500, 500, "Fractol");
-	void	*img = mlx_new_image(mlx, 500, 500);
-	// １ピクセルあたりのビット数
-	int		pixel_bits;
-	// １ラインあたりのバイト数
-	int		line_bytes;
-	// エンディアン データを下位、上位バイトどちらから読み込むか
-	int		endian;
-	char	*buffer = mlx_get_data_addr(img, &pixel_bits, &line_bytes, &endian);
+	t_img			img;
 
-	int	color = 0x0000FF00;
-	int	color1 = 0x0000FF00;
-	int	color2 = 0x00FF0000;
-	if (pixel_bits != 32)
-	// 32ビットカラーでない場合に合わせるのかな？
-	{
-		color = mlx_get_color_value(mlx, color);
-		color2 = mlx_get_color_value(mlx, color2);
-	}
-	for(int y = 0; y < 500; ++y)
-	for(int x = 0; x < 500; ++x)
-	{
-		int pixel = (y * line_bytes) + (x * 4);
+	if (c == 1)
+		img.fractal = mandel;
+	else if (c == 2)
+		img.fractal = trans_fractal(v[1]);
+	else
+		args_error_exit();
+	sset_img(&img);
+	render_fractal(&img);
+	mlx_mouse_hook(img.win, mouse_hook, &img);
+	mlx_loop(img.mlx);
+	return (0);
+}
 
-		double c_x = -2.0 + x * (0.01);
-		double c_y = -1.0 + y * (0.01);
-		double z_x = 0.0;
-		double z_y = 0.0;
-		int n = 0;
-		while (n < 100 && hypot(x, y) < 2.0)
-		{
-			z_x = z_x * z_x - z_y * z_y + c_x;
-			z_y = 2.0 * z_x * z_y + c_y;
-			n++;
-		}
-		if (n < 100)
-			color = color1;
-		else
-			color = color2;
+enum e_fractal	trans_fractal(char *str)
+{
+	if (ft_strcmp(str, "mandel") == 0)
+		return (mandel);
+	else if (ft_strcmp(str, "julia") == 0)
+		return (julia);
+	else if (ft_strcmp(str, "phoenix") == 0)
+		return (phoenix);
+	else if (ft_strcmp(str, "barnsley") == 0)
+		return (barnsley);
+	else if (ft_strcmp(str, "flame") == 0)
+		return (flame);
+	else
+		args_error_exit();
+	return (0);
+}
 
-		if (endian == 1)        // Most significant (Alpha) byte first
-		{
-			buffer[pixel + 0] = (color >> 24);
-			buffer[pixel + 1] = (color >> 16) & 0xFF;
-			buffer[pixel + 2] = (color >> 8) & 0xFF;
-			buffer[pixel + 3] = (color) & 0xFF;
-		}
-		else if (endian == 0)   // Least significant (Blue) byte first
-		{
-			buffer[pixel + 0] = (color) & 0xFF;
-			buffer[pixel + 1] = (color >> 8) & 0xFF;
-			buffer[pixel + 2] = (color >> 16) & 0xFF;
-			buffer[pixel + 3] = (color >> 24);
-		}
-	}
-	mlx_put_image_to_window(mlx, win, img, 0, 0);
-	mlx_loop(mlx);
+void	sset_img(t_img *img)
+{
+	img->mlx = mlx_init();
+	img->win = mlx_new_window(img->mlx, WIN_WIDTH, WIN_HEIGHT, WIN_TITLE);
+	img->img = mlx_new_image(img->mlx, WIN_WIDTH, WIN_HEIGHT);
+	img->buffer = mlx_get_data_addr(img->img, &img->pixel_bits,
+			&img->line_bytes, &img->endian);
+	img->zoom = 100.0;
 }

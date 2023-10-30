@@ -1,27 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yoda <yoda@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/01 06:06:08 by yoda              #+#    #+#             */
-/*   Updated: 2023/10/30 19:26:01 by yoda             ###   ########.fr       */
+/*   Created: 2023/10/30 19:22:15 by yoda              #+#    #+#             */
+/*   Updated: 2023/10/30 19:22:26 by yoda             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "fractol.h"
 
-void	ft_putstr(char *str)
+t_cmp	square_cmb(t_cmp a)
 {
-	if (!str)
-		return ;
-	write(1, str, ft_strlen(str));
-}
+	t_cmp	b;
 
-void	ft_puterror(char *str)
-{
-	if (!str)
-		return ;
-	write(2, str, ft_strlen(str));
+	b.real = a.real * a.real - a.imag * a.imag;
+	b.imag = 2 * a.real * a.imag;
+	return (b);
 }

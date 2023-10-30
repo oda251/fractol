@@ -1,27 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   error_handlers.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yoda <yoda@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/01 06:06:08 by yoda              #+#    #+#             */
-/*   Updated: 2023/10/30 19:26:01 by yoda             ###   ########.fr       */
+/*   Created: 2023/10/30 20:56:25 by yoda              #+#    #+#             */
+/*   Updated: 2023/10/30 20:56:32 by yoda             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "fractol.h"
 
-void	ft_putstr(char *str)
+int	args_error_exit(void)
 {
-	if (!str)
-		return ;
-	write(1, str, ft_strlen(str));
-}
-
-void	ft_puterror(char *str)
-{
-	if (!str)
-		return ;
-	write(2, str, ft_strlen(str));
+	ft_puterror("Usage: ./fractol [fractal]\n");
+	exit(0);
 }

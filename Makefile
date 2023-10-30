@@ -1,4 +1,9 @@
-SRCS = main.c
+SRCS = main.c \
+	solve_fractals.c \
+	utils.c \
+	error_handlers.c \
+	render.c \
+	mouse_hook.c
 SRC_DIR = src/
 SRCS := $(addprefix $(SRC_DIR), $(SRCS))
 UNAME_S := $(shell uname -s)
@@ -23,6 +28,11 @@ all: $(NAME)
 
 $(NAME): $(LIBFT) $(MINILIBX) $(SRCS)
 	$(CC) $(CFLAGS) $(INCLUDES) -o $(NAME) $(SRCS) \
+	-L$(LIBFT_DIR) -lft \
+	-L $(LIBX_DIR) -lmlx -framework OpenGL -framework AppKit
+
+test:
+	$(CC) $(TFLAGS) $(INCLUDES) -o $(NAME) $(SRCS) \
 	-L$(LIBFT_DIR) -lft \
 	-L $(LIBX_DIR) -lmlx -framework OpenGL -framework AppKit
 
