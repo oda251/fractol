@@ -6,7 +6,7 @@
 /*   By: yoda <yoda@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 16:21:30 by yoda              #+#    #+#             */
-/*   Updated: 2023/11/07 08:00:12 by yoda             ###   ########.fr       */
+/*   Updated: 2023/11/07 08:00:08 by yoda             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 # include <limits.h>
 # include <fcntl.h>
 # include <stdbool.h>
-# include <OpenGL/gl.h>
 # include "mlx.h"
 # include "key_macros.h"
 # include "libft.h"

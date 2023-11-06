@@ -1,34 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   free_close_handlers.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yoda <yoda@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/20 21:11:08 by yoda              #+#    #+#             */
-/*   Updated: 2023/11/02 08:27:00 by yoda             ###   ########.fr       */
+/*   Created: 2023/11/07 04:11:10 by yoda              #+#    #+#             */
+/*   Updated: 2023/11/07 07:55:56 by yoda             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "fractol.h"
 
-char	*ft_strjoin(char const *s1, const char *s2)
+void	free_img(t_img *img)
 {
-	char	*dest;
-	size_t	len1;
-	size_t	len2;
+	if (!img)
+		return ;
+	if (img->img)
+		mlx_destroy_image(img->mlx, img->img);
+	if (img->win)
+		mlx_destroy_window(img->mlx, img->win);
+	if (img->mlx)
+	{
+		mlx_loop_end(img->mlx);
+		mlx_destroy_display(img->mlx);
+		free(img->mlx);
+	}
+}
 
-	if (!s2)
-		return (NULL);
-	if (!s1)
-		return (ft_strdup(s2));
-	len1 = ft_strlen(s1);
-	len2 = ft_strlen(s2);
-	dest = malloc(sizeof(char) * (len1 + len2 + 1));
-	if (!dest)
-		return (NULL);
-	ft_strcpy(dest, s1);
-	ft_strcpy(dest + len1, s2);
-	dest[len1 + len2] = '\0';
-	return (dest);
+int	close_window(t_img *img)
+{
+	free_img(img);
+	exit(EXIT_SUCCESS);
 }

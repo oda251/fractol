@@ -3,27 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoda <yoda@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yoda <yoda@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 15:45:00 by yoda              #+#    #+#             */
-/*   Updated: 2023/09/28 17:32:51 by yoda             ###   ########.fr       */
+/*   Updated: 2023/11/01 23:09:00 by yoda             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	words_count(char const *s, char c)
+static int	in_charset(char c, char *set)
+{
+	while (*set)
+	{
+		if (c == *set)
+			return (1);
+		set++;
+	}
+	return (0);
+}
+
+static size_t	words_count(char const *s, char *set)
 {
 	size_t	count;
 	size_t	i;
 
 	count = 0;
-	if (*s != c)
+	if (!in_charset(*s, set))
 		count++;
 	i = 0;
 	while (s[i + 1])
 	{
-		if (s[i] == c && s[i + 1] != c)
+		if (in_charset(s[i], set) && !in_charset(s[i + 1], set))
 			count++;
 		i++;
 	}
@@ -44,7 +55,7 @@ static char	**free_all(char ***dest, size_t index)
 	return (NULL);
 }
 
-static int	initialize_split(char ***dest, char const *s, char c)
+static int	initialize_split(char ***dest, char const *s, char *set)
 {
 	size_t	size;
 
@@ -53,7 +64,7 @@ static int	initialize_split(char ***dest, char const *s, char c)
 		(*dest) = NULL;
 		return (0);
 	}
-	size = words_count(s, c);
+	size = words_count(s, set);
 	if (!*s)
 	{
 		(*dest) = ft_calloc(2, sizeof(char *));
@@ -69,19 +80,19 @@ static int	initialize_split(char ***dest, char const *s, char c)
 	return (1);
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_split(char const *s, char *set)
 {
 	char		**dest;
 	const char	*start;
 	size_t		index;
 
-	if (!initialize_split(&dest, s, c))
+	if (!initialize_split(&dest, s, set))
 		return (dest);
 	start = NULL;
 	index = 0;
 	while (*s || start)
 	{
-		if (!*s || (start && *s == c))
+		if (!*s || (start && in_charset(*s, set)))
 		{
 			dest[index] = malloc((s - start + 1) * sizeof(char));
 			if (!dest[index])
@@ -91,7 +102,7 @@ char	**ft_split(char const *s, char c)
 				break ;
 			start = NULL;
 		}
-		else if (!start && *s != c)
+		else if (!start && !in_charset(*s, set))
 			start = s;
 		s++;
 	}

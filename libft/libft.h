@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoda <yoda@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yoda <yoda@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 20:55:50 by yoda              #+#    #+#             */
-/*   Updated: 2023/10/30 21:28:45 by yoda             ###   ########.fr       */
+/*   Updated: 2023/11/07 05:35:54 by yoda             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,10 @@
 # include <stdlib.h>
 # include <limits.h>
 # include <stdint.h>
+# include <stdbool.h>
 # define HEX_UP "0123456789ABCDEF"
 # define HEX_LOW "0123456789abcdef"
+# define SPACE " \t\n\v\f\r"
 
 int		ft_min(int *s, int size);
 int		ft_min_index(int *s, int size);
@@ -40,7 +42,7 @@ void	ft_putstr_fd(char *s, int fd);
 int		ft_atoi(const char *str);
 char	*ft_strtrim(char const *s1, char const *set);
 void	ft_putendl_fd(char *s, int fd);
-char	**ft_split(char const *s, char c);
+char	**ft_split(char const *s, char *set);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
@@ -61,6 +63,7 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
 void	ft_puterror(char *str);
 int		ft_strcmp(char *s1, char *s2);
+char	*ft_strtolower(char *str);
 typedef struct s_list
 {
 	void			*content;
@@ -80,5 +83,13 @@ char	*ft_ultoa_hex(unsigned long n, int up_flag);
 int		ft_atoi_only_num(const char *str);
 void	ft_putstr(char *str);
 char	*ft_itoa_sign_sep(int n, char **sign);
+size_t	ft_strcpy(char *dst, const char *src);
+char	*get_next_line(int fd);
+void	*ft_free(void *p);
+void	*ft_free_char_double_p(char **arg);
+void	*ft_free_char_triple_p(char ***args);
+void	*ft_memset_int(int *b, int n, size_t len);
+double	ft_atod(char *str);
+bool	is_decimal(char *str);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoda <yoda@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yoda <yoda@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 19:30:00 by yoda              #+#    #+#             */
-/*   Updated: 2023/10/30 22:22:20 by yoda             ###   ########.fr       */
+/*   Updated: 2023/11/07 07:31:10 by yoda             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,20 @@ void	render_fractal(t_img *img)
 	int		pixel;
 
 	index.x = -1;
-	while (++(index.x) < WIN_WIDTH)
+	while (++(index.x) < img->win_width)
 	{
 		index.y = -1;
-		while (++(index.y) < WIN_HEIGHT)
+		while (++(index.y) < img->win_height)
 		{
 			pixel = (index.y * img->line_bytes) + (index.x * 4);
 			if (img->fractal == mandel)
 				solve_mandel(&index, img);
+			else if (img->fractal == julia)
+				solve_julia(&index, img);
+			else if (img->fractal == cubic)
+				solve_cubic(&index, img);
+			else if (img->fractal == newton)
+				solve_newton(&index, img);
 			drow_pixel(img->buffer, pixel, index.color, img->endian);
 		}
 	}
