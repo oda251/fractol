@@ -3,39 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoda <yoda@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yoda <yoda@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 21:55:53 by yoda              #+#    #+#             */
-/*   Updated: 2023/11/07 21:32:37 by yoda             ###   ########.fr       */
+/*   Updated: 2023/11/07 09:03:25 by yoda             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-double	abs_d(double n)
-{
-	if (n < 0)
-		return (-n);
-	return (n);
-}
-
 int	mouse_hook(int button, int x, int y, t_global_data *img)
 {
-	double	scaling;
-
-	scaling = 1.0;
 	if ((button == MOUSE_WHEEL_UP || button == MOUSE_WHEEL_DOWN
 			|| button == MOUSE_BTN_L || button == MOUSE_BTN_R)
 		&& x >= 0 && x <= WIN_WIDTH && y >= 0 && y <= WIN_HEIGHT)
 	{
 		if (button == MOUSE_BTN_L || button == MOUSE_WHEEL_UP)
-			scaling *= 1.1;
+			img->zoom *= 1.1;
 		else if (button == MOUSE_BTN_R || button == MOUSE_WHEEL_DOWN)
-			scaling /= 1.1;
-		img->center_x += (img->win_width / 2.0 - x) * abs_d(scaling - 1);
-		img->center_y += (img->win_height / 2.0 - y) * abs_d(scaling - 1);
-		img->scaling *= scaling;
-		img->zoom *= img->scaling;
+			img->zoom /= 1.1;
+		img->center_x += (img->win_width / 2.0 - x);
+		img->center_y += (img->win_height / 2.0 - y);
 		render_fractal(img);
 	}
 	return (1);

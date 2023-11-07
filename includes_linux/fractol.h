@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoda <yoda@student.42tokyo.jp>             +#+  +:+       +#+        */
+/*   By: yoda <yoda@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 16:21:30 by yoda              #+#    #+#             */
-/*   Updated: 2023/11/07 09:34:37 by yoda             ###   ########.fr       */
+/*   Updated: 2023/11/07 13:17:11 by yoda             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@
 # define WIN_TITLE "Fractol"
 # define AVAILABLE_FRACTALS 3
 # define DEFAULT_COLOR_RANGE 0x00080EEF
-# define RESIZE_MASK (1L<<18)
 # define BTN_PRESS_MASK (1L<<2)
 
 enum	e_fractal{

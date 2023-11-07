@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoda <yoda@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yoda <yoda@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 18:34:08 by yoda              #+#    #+#             */
-/*   Updated: 2023/11/07 21:24:54 by yoda             ###   ########.fr       */
+/*   Updated: 2023/11/07 09:34:57 by yoda             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	main(int argc, char **argv)
 	init_global_data(&img, argc - 1, argv + 1);
 	render_fractal(&img);
 	mlx_expose_hook(img.win, expose, &img);
-	mlx_hook(img.win, EVENT_CLOSE_BTN, (1L<<2), close_window, &img);
+	mlx_hook(img.win, EVENT_CLOSE_BTN, BTN_PRESS_MASK, close_window, &img);
 	mlx_mouse_hook(img.win, mouse_hook, &img);
 	mlx_key_hook(img.win, key_hook, &img);
 	mlx_loop(img.mlx);
@@ -68,8 +68,6 @@ void	init_global_data(t_global_data *img, int argc, char **argv)
 	img->win_height = WIN_HEIGHT;
 	img->win_width = WIN_WIDTH;
 	img->zoom = WIN_HEIGHT / 3;
-	img->zoom_base = WIN_HEIGHT / 3;
-	img->scaling = 1.0;
 	img->center_x = WIN_WIDTH / 2;
 	img->center_y = WIN_HEIGHT / 2;
 	img->fractal = trans_fractal(argv[0]);
@@ -83,7 +81,10 @@ void	init_global_data(t_global_data *img, int argc, char **argv)
 		perror_exit("fractol: mlx_new_window");
 	img->img = mlx_new_image(img->mlx, WIN_WIDTH, WIN_HEIGHT);
 	if (img->img == NULL)
+	{
+		mlx_destroy_window(img->mlx, img->win);
 		perror_exit("fractol: mlx_new_image");
+	}
 	img->buffer = mlx_get_data_addr(img->img, &img->pixel_bits,
 			&img->line_bytes, &img->endian);
 }
