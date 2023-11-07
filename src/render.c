@@ -6,7 +6,7 @@
 /*   By: yoda <yoda@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 19:30:00 by yoda              #+#    #+#             */
-/*   Updated: 2023/11/07 07:31:10 by yoda             ###   ########.fr       */
+/*   Updated: 2023/11/07 09:03:39 by yoda             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	drow_pixel(char *buffer, int pixel, int color, int endian)
 	}
 }
 
-void	render_fractal(t_img *img)
+void	render_fractal(t_global_data *img)
 {
 	t_point	index;
 	int		pixel;

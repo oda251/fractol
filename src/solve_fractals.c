@@ -6,7 +6,7 @@
 /*   By: yoda <yoda@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 19:22:01 by yoda              #+#    #+#             */
-/*   Updated: 2023/11/07 07:57:00 by yoda             ###   ########.fr       */
+/*   Updated: 2023/11/07 09:32:11 by yoda             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	choice_color(t_point *index, int n, int color_range)
 		index->color = color_range * n;
 }
 
-void	solve_mandel(t_point *index, t_img *img)
+void	solve_mandel(t_point *index, t_global_data *img)
 {
 	int		i;
 	t_cmp	c;
@@ -41,7 +41,7 @@ void	solve_mandel(t_point *index, t_img *img)
 	choice_color(index, i, img->color_range);
 }
 
-void	solve_julia(t_point *index, t_img *img)
+void	solve_julia(t_point *index, t_global_data *img)
 {
 	int		i;
 	t_cmp	c;
@@ -62,7 +62,7 @@ void	solve_julia(t_point *index, t_img *img)
 	choice_color(index, i, img->color_range);
 }
 
-void	solve_cubic(t_point *index, t_img *img)
+void	solve_cubic(t_point *index, t_global_data *img)
 {
 	int		i;
 	t_cmp	c;
@@ -83,7 +83,7 @@ void	solve_cubic(t_point *index, t_img *img)
 	choice_color(index, i, img->color_range);
 }
 
-void	solve_newton(t_point *index, t_img *img)
+void	solve_newton(t_point *index, t_global_data *img)
 {
 	int		i;
 	t_cmp	z;

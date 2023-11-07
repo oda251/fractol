@@ -6,13 +6,13 @@
 /*   By: yoda <yoda@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 21:55:53 by yoda              #+#    #+#             */
-/*   Updated: 2023/11/07 07:57:48 by yoda             ###   ########.fr       */
+/*   Updated: 2023/11/07 09:03:25 by yoda             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int	mouse_hook(int button, int x, int y, t_img *img)
+int	mouse_hook(int button, int x, int y, t_global_data *img)
 {
 	if ((button == MOUSE_WHEEL_UP || button == MOUSE_WHEEL_DOWN
 			|| button == MOUSE_BTN_L || button == MOUSE_BTN_R)
@@ -29,11 +29,11 @@ int	mouse_hook(int button, int x, int y, t_img *img)
 	return (1);
 }
 
-static int	switch_fractal(int current, int keycode, t_img *img)
+static int	switch_fractal(int current, int keycode, t_global_data *img)
 {
 	int	next;
 
-	reset_img(img);
+	reset_global_data(img);
 	if (keycode == KEY_Q)
 		next = current - 1;
 	else
@@ -45,7 +45,7 @@ static int	switch_fractal(int current, int keycode, t_img *img)
 	return (next);
 }
 
-int	key_hook(int keycode, t_img *img)
+int	key_hook(int keycode, t_global_data *img)
 {
 	if (keycode == KEY_ESC)
 		close_window(img);

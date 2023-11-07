@@ -6,13 +6,13 @@
 /*   By: yoda <yoda@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 04:11:10 by yoda              #+#    #+#             */
-/*   Updated: 2023/11/07 07:55:56 by yoda             ###   ########.fr       */
+/*   Updated: 2023/11/07 09:03:21 by yoda             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	free_img(t_img *img)
+void	free_img(t_global_data *img)
 {
 	if (!img)
 		return ;
@@ -28,7 +28,7 @@ void	free_img(t_img *img)
 	}
 }
 
-int	close_window(t_img *img)
+int	close_window(t_global_data *img)
 {
 	free_img(img);
 	exit(EXIT_SUCCESS);

@@ -6,7 +6,7 @@
 /*   By: yoda <yoda@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 16:21:30 by yoda              #+#    #+#             */
-/*   Updated: 2023/11/07 08:00:08 by yoda             ###   ########.fr       */
+/*   Updated: 2023/11/07 09:34:37 by yoda             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@
 # define WIN_TITLE "Fractol"
 # define AVAILABLE_FRACTALS 3
 # define DEFAULT_COLOR_RANGE 0x00080EEF
+# define RESIZE_MASK (1L<<18)
+# define BTN_PRESS_MASK (1L<<2)
 
 enum	e_fractal{
 	mandel,
@@ -47,7 +49,7 @@ typedef struct s_point
 	int	y;
 	int	color;
 }	t_point;
-typedef struct s_img
+typedef struct s_global_data
 {
 	void			*mlx;
 	void			*img;
@@ -64,15 +66,16 @@ typedef struct s_img
 	double		zoom;
 	int				win_width;
 	int				win_height;
-}	t_img;
+}	t_global_data;
 
-int		mouse_hook(int button, int x, int y, t_img *img);
-int		close_window(t_img *img);
-int		key_hook(int keycode, t_img *img);
-void	init_img(t_img *img, int argc, char **argv);
-void	reset_img(t_img *img);
-void	shift_color_range(t_img *img);
-void	render_fractal(t_img *img);
+int		mouse_hook(int button, int x, int y, t_global_data *img);
+void	free_img(t_global_data *img);
+int		close_window(t_global_data *img);
+int		key_hook(int keycode, t_global_data *img);
+void	init_global_data(t_global_data *img, int argc, char **argv);
+void	reset_global_data(t_global_data *img);
+void	shift_color_range(t_global_data *img);
+void	render_fractal(t_global_data *img);
 t_cmp	square_cmp(t_cmp a);
 t_cmp	multiple_cmp(t_cmp a, t_cmp b);
 t_cmp	cube_cmp(t_cmp a);
@@ -80,11 +83,12 @@ t_cmp	plus_cmp(t_cmp a, t_cmp b);
 t_cmp	minus_cmp(t_cmp a, t_cmp b);
 t_cmp	devide_cmp(t_cmp a, t_cmp b);
 t_cmp	real_to_cmp(double real);
-void	solve_mandel(t_point *index, t_img *img);
-void	solve_julia(t_point *index, t_img *img);
-void	solve_cubic(t_point *index, t_img *img);
-void	solve_newton(t_point *index, t_img *img);
+void	solve_mandel(t_point *index, t_global_data *img);
+void	solve_julia(t_point *index, t_global_data *img);
+void	solve_cubic(t_point *index, t_global_data *img);
+void	solve_newton(t_point *index, t_global_data *img);
 void	error_invalid_args(char *str);
-void	free_img(t_img *img);
+void	perror_exit(char *str);
+int		expose(t_global_data *img);
 
 #endif
