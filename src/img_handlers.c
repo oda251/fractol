@@ -6,7 +6,7 @@
 /*   By: yoda <yoda@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 04:46:26 by yoda              #+#    #+#             */
-/*   Updated: 2023/11/07 09:29:17 by yoda             ###   ########.fr       */
+/*   Updated: 2023/11/09 01:58:34 by yoda             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ void	reset_global_data(t_global_data *img)
 	}
 	img->buffer = mlx_get_data_addr(img->img, &img->pixel_bits,
 			&img->line_bytes, &img->endian);
-	img->zoom = img->win_height / 3;
-	img->center_x = img->win_width / 2;
-	img->center_y = img->win_height / 2;
+	img->zoom = WIN_WIDTH / 4.0;
+	img->offset_x = -2;
+	img->offset_y = -1.5;
 }
 
 void	shift_color_range(t_global_data *img)

@@ -6,7 +6,7 @@
 /*   By: yoda <yoda@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 19:30:00 by yoda              #+#    #+#             */
-/*   Updated: 2023/11/07 09:03:39 by yoda             ###   ########.fr       */
+/*   Updated: 2023/11/09 01:00:19 by yoda             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,14 @@ void	render_fractal(t_global_data *img)
 	t_point	index;
 	int		pixel;
 
-	index.x = -1;
-	while (++(index.x) < img->win_width)
+	index.y = -1;
+	while (++(index.y) < img->win_height)
 	{
-		index.y = -1;
-		while (++(index.y) < img->win_height)
+		index.x = -1;
+		while (++(index.x) < img->win_width)
 		{
-			pixel = (index.y * img->line_bytes) + (index.x * 4);
+			pixel = (index.y * img->line_bytes)
+				+ (index.x * (img->pixel_bits / 8));
 			if (img->fractal == mandel)
 				solve_mandel(&index, img);
 			else if (img->fractal == julia)

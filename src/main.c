@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoda <yoda@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yoda <yoda@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 18:34:08 by yoda              #+#    #+#             */
-/*   Updated: 2023/11/07 21:24:54 by yoda             ###   ########.fr       */
+/*   Updated: 2023/11/09 01:58:22 by yoda             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,9 @@ void	init_global_data(t_global_data *img, int argc, char **argv)
 {
 	img->win_height = WIN_HEIGHT;
 	img->win_width = WIN_WIDTH;
-	img->zoom = WIN_HEIGHT / 3;
-	img->zoom_base = WIN_HEIGHT / 3;
-	img->scaling = 1.0;
-	img->center_x = WIN_WIDTH / 2;
-	img->center_y = WIN_HEIGHT / 2;
+	img->zoom = WIN_WIDTH / 4.0;
+	img->offset_x = -2;
+	img->offset_y = -1.5;
 	img->fractal = trans_fractal(argv[0]);
 	img->color_range = DEFAULT_COLOR_RANGE;
 	get_params(img, argc - 1, argv + 1);

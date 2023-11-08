@@ -6,7 +6,7 @@
 /*   By: yoda <yoda@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 19:22:01 by yoda              #+#    #+#             */
-/*   Updated: 2023/11/07 09:32:11 by yoda             ###   ########.fr       */
+/*   Updated: 2023/11/09 02:06:16 by yoda             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void	solve_mandel(t_point *index, t_global_data *img)
 	t_cmp	c;
 	t_cmp	z;
 
-	c.real = (index->x - img->center_x) / img->zoom;
-	c.imag = (index->y - img->center_y) / img->zoom;
+	c.real = index->x / img->zoom + img->offset_x;
+	c.imag = index->y / img->zoom + img->offset_y;
 	z.imag = 0.0;
 	z.real = 0.0;
 	i = -1;
@@ -49,8 +49,8 @@ void	solve_julia(t_point *index, t_global_data *img)
 
 	c.real = img->julia_c.real;
 	c.imag = img->julia_c.imag;
-	z.real = (index->x - img->center_x) / img->zoom;
-	z.imag = (index->y - img->center_y) / img->zoom;
+	z.real = index->x / img->zoom + img->offset_x;
+	z.imag = index->y / img->zoom + img->offset_y;
 	i = -1;
 	while (++i < ITER_MAX)
 	{
@@ -68,8 +68,8 @@ void	solve_cubic(t_point *index, t_global_data *img)
 	t_cmp	c;
 	t_cmp	z;
 
-	c.real = (index->x - img->center_x) / img->zoom;
-	c.imag = (index->y - img->center_y) / img->zoom;
+	c.real = index->x / img->zoom + img->offset_x;
+	c.imag = index->y / img->zoom + img->offset_y;
 	z.imag = 0.0;
 	z.real = 0.0;
 	i = -1;
@@ -89,8 +89,8 @@ void	solve_newton(t_point *index, t_global_data *img)
 	t_cmp	z;
 	t_cmp	tmp;
 
-	z.real = (index->x - img->center_x) / img->zoom;
-	z.imag = (index->y - img->center_y) / img->zoom;
+	z.real = index->x / img->zoom + img->offset_x;
+	z.imag = index->y / img->zoom + img->offset_y;
 	i = -1;
 	while (++i < ITER_MAX)
 	{

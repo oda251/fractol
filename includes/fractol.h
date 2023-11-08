@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoda <yoda@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yoda <yoda@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 16:21:30 by yoda              #+#    #+#             */
-/*   Updated: 2023/11/07 21:24:23 by yoda             ###   ########.fr       */
+/*   Updated: 2023/11/09 02:04:59 by yoda             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,9 @@
 # include "mlx.h"
 # include "key_macros.h"
 # include "libft.h"
-# define ITER_MAX 60
+# ifndef INT_MAX
+#  define ITER_MAX 60
+# endif
 # define WIN_WIDTH 640
 # define WIN_HEIGHT 480
 # define WIN_TITLE "Fractol"
@@ -58,12 +60,10 @@ typedef struct s_global_data
 	int				endian;
 	int				color_range;
 	enum e_fractal	fractal;
-	int				center_x;
-	int				center_y;
+	double		offset_x;
+	double		offset_y;
 	t_cmp			julia_c;
 	double			zoom;
-	double			scaling;
-	double			zoom_base;
 	int				win_width;
 	int				win_height;
 }	t_global_data;
