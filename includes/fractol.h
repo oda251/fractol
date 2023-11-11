@@ -6,7 +6,7 @@
 /*   By: yoda <yoda@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 16:21:30 by yoda              #+#    #+#             */
-/*   Updated: 2023/11/09 02:04:59 by yoda             ###   ########.fr       */
+/*   Updated: 2023/11/09 02:15:31 by yoda             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include "mlx.h"
 # include "key_macros.h"
 # include "libft.h"
-# ifndef INT_MAX
+# ifndef ITER_MAX
 #  define ITER_MAX 60
 # endif
 # define WIN_WIDTH 640

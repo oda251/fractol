@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoda <yoda@student.42tokyo.jp>             +#+  +:+       +#+        */
+/*   By: yoda <yoda@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 18:34:08 by yoda              #+#    #+#             */
-/*   Updated: 2023/11/09 01:58:22 by yoda             ###   ########.fr       */
+/*   Updated: 2023/11/11 17:53:44 by yoda             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,3 +85,8 @@ void	init_global_data(t_global_data *img, int argc, char **argv)
 	img->buffer = mlx_get_data_addr(img->img, &img->pixel_bits,
 			&img->line_bytes, &img->endian);
 }
+
+// __attribute__((destructor))
+// static void destructor() {
+//     system("leaks -q fractol");
+// }

@@ -6,7 +6,7 @@
 /*   By: yoda <yoda@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 04:11:10 by yoda              #+#    #+#             */
-/*   Updated: 2023/11/07 14:39:13 by yoda             ###   ########.fr       */
+/*   Updated: 2023/11/11 17:52:20 by yoda             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,6 @@ void	free_img(t_global_data *img)
 
 int	close_window(t_global_data *img)
 {
-	free_img(img);
+	(void) img;
 	exit(EXIT_SUCCESS);
 }

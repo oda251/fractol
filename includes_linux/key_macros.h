@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   key_macros.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoda <yoda@student.42tokyo.jp>             +#+  +:+       +#+        */
+/*   By: yoda <yoda@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 04:08:21 by yoda              #+#    #+#             */
-/*   Updated: 2023/11/07 05:23:50 by yoda             ###   ########.fr       */
+/*   Updated: 2023/11/11 17:50:53 by yoda             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef KEYS_MACROS_H
-# define KEYS_MACROS_H
+#ifndef KEY_MACROS_H
+# define KEY_MACROS_H
 
 # define EVENT_CLOSE_BTN 17
 # define KEY_ESC 65307

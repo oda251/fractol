@@ -6,12 +6,12 @@
 /*   By: yoda <yoda@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 04:08:21 by yoda              #+#    #+#             */
-/*   Updated: 2023/11/07 17:17:41 by yoda             ###   ########.fr       */
+/*   Updated: 2023/11/11 17:53:12 by yoda             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef KEYS_MACROS_H
-# define KEYS_MACROS_H
+#ifndef KEY_MACROS_H
+# define KEY_MACROS_H
 
 # define EVENT_CLOSE_BTN 17
 # define KEY_ESC 53
@@ -32,6 +32,6 @@
 # define MOUSE_BTN_L 1
 # define MOUSE_BTN_R 2
 # define KEY_Q 12
-# define KEY_E 13
+# define KEY_E 14
 
 #endif
