@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_handlers.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoda <yoda@student.42tokyo.jp>             +#+  +:+       +#+        */
+/*   By: yoda <yoda@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 20:56:25 by yoda              #+#    #+#             */
-/*   Updated: 2023/11/07 09:33:32 by yoda             ###   ########.fr       */
+/*   Updated: 2023/11/11 17:58:41 by yoda             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	error_invalid_args(char *str)
 	ft_puterror("  - move: W, A, S, D or arrow keys\n");
 	ft_puterror("  - zoom: mouse wheel or left/right click\n");
 	ft_puterror("  - change fractal: Q or E\n");
+	ft_puterror("  - change color range: SPACE\n");
 	exit(EXIT_FAILURE);
 }
 

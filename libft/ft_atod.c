@@ -3,14 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atod.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoda <yoda@student.42tokyo.jp>             +#+  +:+       +#+        */
+/*   By: yoda <yoda@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 05:25:32 by yoda              #+#    #+#             */
-/*   Updated: 2023/11/07 05:46:08 by yoda             ###   ########.fr       */
+/*   Updated: 2023/11/11 18:09:31 by yoda             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+static void	sub_to_false(int *n, bool *b)
+{
+	(*n)++;
+	*b = false;
+}
+
+static void	sub_to_true(int *n, bool *b)
+{
+	(*n)++;
+	*b = true;
+}
 
 bool	is_decimal(char *str)
 {
@@ -24,14 +36,11 @@ bool	is_decimal(char *str)
 	if (str[i] && (str[i] == '+' || str[i] == '-'))
 		i++;
 	while (str[i] && ('0' <= str[i] && str[i] <= '9'))
-	{
-		detect_num = true;
-		i++;
-	}
+		sub_to_true(&i, &detect_num);
 	if (str[i] && str[i] == '.')
-		i++;
+		sub_to_false(&i, &detect_num);
 	while (str[i] && ('0' <= str[i] && str[i] <= '9'))
-		i++;
+		sub_to_true(&i, &detect_num);
 	if (detect_num && str[i] == '\0')
 		return (true);
 	return (false);
@@ -41,8 +50,8 @@ double	ft_atod(char *str)
 {
 	int			i;
 	int			sign;
-	double	num;
-	double	decimal;
+	double		num;
+	double		decimal;
 
 	if (!is_decimal(str))
 		return (0);

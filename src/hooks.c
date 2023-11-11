@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoda <yoda@student.42tokyo.jp>             +#+  +:+       +#+        */
+/*   By: yoda <yoda@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 21:55:53 by yoda              #+#    #+#             */
-/*   Updated: 2023/11/09 01:59:46 by yoda             ###   ########.fr       */
+/*   Updated: 2023/11/11 17:56:05 by yoda             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,13 +61,13 @@ int	key_hook(int keycode, t_global_data *img)
 	if (keycode == KEY_ESC)
 		close_window(img);
 	else if (keycode == KEY_W || keycode == KEY_UP)
-		img->offset_y += 10;
+		img->offset_y -= 10 / img->zoom;
 	else if (keycode == KEY_A || keycode == KEY_LEFT)
-		img->offset_x += 10;
+		img->offset_x -= 10 / img->zoom;
 	else if (keycode == KEY_S || keycode == KEY_DOWN)
-		img->offset_y -= 10;
+		img->offset_y += 10 / img->zoom;
 	else if (keycode == KEY_D || keycode == KEY_RIGHT)
-		img->offset_x -= 10;
+		img->offset_x += 10 / img->zoom;
 	else if (keycode == KEY_Q || keycode == KEY_E)
 		img->fractal = switch_fractal(img->fractal, keycode, img);
 	else if (keycode == KEY_PLUS)
