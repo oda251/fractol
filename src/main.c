@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoda <yoda@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yoda <yoda@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 18:34:08 by yoda              #+#    #+#             */
-/*   Updated: 2023/11/11 18:01:09 by yoda             ###   ########.fr       */
+/*   Updated: 2023/11/19 15:21:55 by yoda             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	main(int argc, char **argv)
 	init_global_data(&img, argc - 1, argv + 1);
 	render_fractal(&img);
 	mlx_expose_hook(img.win, expose, &img);
-	mlx_hook(img.win, EVENT_CLOSE_BTN, (1L<<2), close_window, &img);
+	mlx_hook(img.win, EVENT_CLOSE_BTN, (1L << 2), close_window, &img);
 	mlx_mouse_hook(img.win, mouse_hook, &img);
 	mlx_key_hook(img.win, key_hook, &img);
 	mlx_loop(img.mlx);

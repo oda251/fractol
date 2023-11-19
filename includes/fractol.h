@@ -6,7 +6,7 @@
 /*   By: yoda <yoda@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 16:21:30 by yoda              #+#    #+#             */
-/*   Updated: 2023/11/09 02:15:31 by yoda             ###   ########.fr       */
+/*   Updated: 2023/11/19 15:22:02 by yoda             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,8 @@ typedef struct s_global_data
 	int				endian;
 	int				color_range;
 	enum e_fractal	fractal;
-	double		offset_x;
-	double		offset_y;
+	double			offset_x;
+	double			offset_y;
 	t_cmp			julia_c;
 	double			zoom;
 	int				win_width;
